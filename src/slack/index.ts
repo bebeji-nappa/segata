@@ -2,7 +2,7 @@ import { WebClient } from '@slack/web-api'
 
 require('dotenv').config()
 const web = new WebClient(process.env.SLACK_TOKEN)
-const conversationId:string = 'Channel IDを入力'
+const conversationId:string = 'XXXXXXXXXX'
 
 const msg = [
   'セガサターーーーン、シローーーーーーーーーーーーーーーーー!!!!',
@@ -22,9 +22,16 @@ export const join = async () => {
   await web.conversations.join({ channel: conversationId })
 }
 
-export const postMessage = async () => {
+export const sendMessageGetMethod = async () => {
   const random = Math.floor(Math.random() * msg.length)
   const res = await web.chat.postMessage({ text: msg[random], channel: conversationId })
+  console.log(
+    `A message was posed to conversation ${res.channel} with id ${res.ts} which contains the message ${res.message}`
+  )
+}
+
+export const sendMessagePostMethod = async (text: string) => {
+  const res = await web.chat.postMessage({ text: text, channel: conversationId })
   console.log(
     `A message was posed to conversation ${res.channel} with id ${res.ts} which contains the message ${res.message}`
   )
