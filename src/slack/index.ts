@@ -2,17 +2,20 @@ import { WebClient } from '@slack/web-api'
 
 require('dotenv').config()
 const web = new WebClient(process.env.SLACK_TOKEN)
-const conversationId:string = 'C0147MBL560'
+const conversationId:string = 'Channel IDを入力'
 
 const msg = [
   'セガサターーーーン、シローーーーーーーーーーーーーーーーー!!!!',
-  '指が折れるまで!指が折れるまで!',
+  '若者よ...\n真剣に取り組んでいるものはあるか?命がけで打ち込んでいる物があるか?\nセガサターン、シロ!\n指が折れるまで......指が折れるまで!',
   'ホーーーームラン!!!',
   'こいつら人間じゃねぇ!!!',
   '名監督...!!!',
   'アタマを使え!!',
   'さくらさーーーーん、さくらさーーーーーーーん!!!',
-  '素晴らしいゲームを、ありがとう。野茂くん!'
+  '素晴らしいゲームを.......ありがとう、野茂くん!',
+  '冬こそ燃えろ!',
+  'みんなで戦え!',
+  'せがたゲームチャート、スチーム度:満点!'
 ]
 
 export const join = async () => {
