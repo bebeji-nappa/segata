@@ -13,12 +13,14 @@ const server = http_1.default.createServer(async (req, res) => {
         res.end();
     }
     else if (req.url === '/' && req.method === 'POST') {
+        slack_1.sendMessageSegata();
         let data = '';
         req.on('data', (chunk) => {
             data += chunk;
         }).on('end', () => {
             let shap_data = shap_1.shap(data);
-            slack_1.sendMessagePostMethod(shap_data);
+            let msg = shap_data ? shap_data : "真面目に遊べ!";
+            slack_1.sendMessagePostMethod(msg);
         });
         res.end();
     }

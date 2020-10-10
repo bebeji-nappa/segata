@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sendMessagePostMethod = exports.sendMessageGetMethod = exports.join = void 0;
+exports.sendMessagePostMethod = exports.sendMessageSegata = exports.sendMessageGetMethod = exports.join = void 0;
 const web_api_1 = require("@slack/web-api");
 require('dotenv').config();
 const web = new web_api_1.WebClient(process.env.SLACK_TOKEN);
@@ -24,6 +24,10 @@ exports.join = async () => {
 exports.sendMessageGetMethod = async () => {
     const random = Math.floor(Math.random() * msg.length);
     const res = await web.chat.postMessage({ text: msg[random], channel: conversationId });
+    console.log(`A message was posed to conversation ${res.channel} with id ${res.ts} which contains the message ${res.message}`);
+};
+exports.sendMessageSegata = async () => {
+    const res = await web.chat.postMessage({ text: 'トォオリリャア!!!', channel: conversationId });
     console.log(`A message was posed to conversation ${res.channel} with id ${res.ts} which contains the message ${res.message}`);
 };
 exports.sendMessagePostMethod = async (text) => {

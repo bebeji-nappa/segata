@@ -1,5 +1,5 @@
 import http from 'http';
-import { sendMessageGetMethod, sendMessagePostMethod, join } from './slack';
+import { sendMessageGetMethod, sendMessagePostMethod, sendMessageSegata, join } from './slack';
 import { shap } from './shap';
 
 const server = http.createServer(async (req, res) => {
@@ -8,12 +8,14 @@ const server = http.createServer(async (req, res) => {
     sendMessageGetMethod();
     res.end(); 
   } else if(req.url === '/' && req.method === 'POST') {
+    sendMessageSegata();
     let data = '';
     req.on('data', (chunk) => { 
       data += chunk;
     }).on('end', () => {
       let shap_data = shap(data);
-      sendMessagePostMethod(shap_data);
+      let msg = shap_data ? shap_data : "真面目に遊べ!"
+      sendMessagePostMethod(msg);
     })
     res.end();
   }

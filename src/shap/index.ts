@@ -5,7 +5,6 @@ export const shap = (data: string) => {
     const mapData = val.split('=')
     map.set(mapData[0], decodeURIComponent(mapData[1]))
   }
-  console.log(map)
   const text = map.get('text')
   return text
 }

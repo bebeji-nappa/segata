@@ -30,6 +30,13 @@ export const sendMessageGetMethod = async () => {
   )
 }
 
+export const sendMessageSegata = async () => {
+  const res = await web.chat.postMessage({ text: 'トォオリリャア!!!', channel: conversationId })
+  console.log(
+    `A message was posed to conversation ${res.channel} with id ${res.ts} which contains the message ${res.message}`
+  )
+}
+
 export const sendMessagePostMethod = async (text: string) => {
   const res = await web.chat.postMessage({ text: text, channel: conversationId })
   console.log(
