@@ -36,18 +36,13 @@ SLACK_TOKEN=xoxb-XXXXXXXXXXXX-XXXXXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXX
 ```typescript
 const conversationId:string = 'XXXXXXXXXX' //Channel id
 ```
-最後にターミナルで `tsc` を実行した後、`yarn start` を実行します。
+最後にターミナルで `tsc` を実行します。
 
 ```bash
 $ tsc
-$ yarn start
 ```
 
-http://localhost:8080 にアクセスすると、チャンネルにメッセージが投稿されます。
-
 ### Deploy in Heroku
-
-**※これは Slash Command を設定する際に行います。ローカル環境で実行する際は、この手順は必要ありません。**
 
 `heroku` に環境変数 `SLACK_TOKEN` を設定し、デプロイします。
 
@@ -59,4 +54,23 @@ git commit -am 'first commit'
 git push heroku master
 ```
 
-その後 Slack api の `Slash commands` で Heroku で作成した URL でコマンドを登録してください。
+その後、[Heroku Scheduler](https://elements.heroku.com/addons/scheduler) を使って、以下のコマンドをジョブに登録してください。
+
+```bash
+curl https://XXXXXX.herokuapp.com # 例: Heroku app の URL を登録します
+```
+
+これで、一定時間ごとにせがた三四郎がメッセージを送信します。
+
+### Set up Slash Command
+
+**※この手順は Slash Command を設定する際に行います。**
+
+Slack api の `Slash commands` で Heroku で作成した URL でコマンド(例: `/segata` )を登録してください。
+
+Slash command を使うことで、好きなメッセージをせがた三四郎で送ることができます。
+
+```bash
+# コマンドが /segata の場合
+/segata Hello SEGA!
+```
