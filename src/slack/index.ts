@@ -1,10 +1,10 @@
-import { WebClient } from '@slack/web-api'
+import { WebAPICallResult, WebClient } from '@slack/web-api'
 
 require('dotenv').config()
-const web = new WebClient(process.env.SLACK_TOKEN)
-const conversationId:string = 'XXXXXXXXXX'
+const web:WebClient = new WebClient(process.env.SLACK_TOKEN)
+const conversationId:string = 'XXXXXXXXXXXX'
 
-const msg = [
+const msg:string[] = [
   'セガサターーーーン、シローーーーーーーーーーーーーーーーー!!!!',
   '若者よ...\n真剣に取り組んでいるものはあるか?命がけで打ち込んでいる物があるか?\nセガサターン、シロ!\n指が折れるまで......指が折れるまで!',
   'ホーーーームラン!!!',
@@ -23,23 +23,16 @@ export const join = async () => {
 }
 
 export const sendMessageGetMethod = async () => {
-  const random = Math.floor(Math.random() * msg.length)
-  const res = await web.chat.postMessage({ text: msg[random], channel: conversationId })
-  console.log(
-    `A message was posed to conversation ${res.channel} with id ${res.ts} which contains the message ${res.message}`
-  )
+  const random:number = Math.floor(Math.random() * msg.length)
+  await web.chat.postMessage({ text: msg[random], channel: conversationId })
+  console.log('Send Message')
 }
 
 export const sendMessageSegata = async () => {
-  const res = await web.chat.postMessage({ text: 'トォオリリャア!!!', channel: conversationId })
-  console.log(
-    `A message was posed to conversation ${res.channel} with id ${res.ts} which contains the message ${res.message}`
-  )
+  await web.chat.postMessage({ text: 'トォオリリャア!!!', channel: conversationId })
 }
 
 export const sendMessagePostMethod = async (text: string) => {
-  const res = await web.chat.postMessage({ text: text, channel: conversationId })
-  console.log(
-    `A message was posed to conversation ${res.channel} with id ${res.ts} which contains the message ${res.message}`
-  )
+  await web.chat.postMessage({ text: text, channel: conversationId })
+  console.log('Send Message')
 }

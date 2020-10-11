@@ -4,7 +4,7 @@ exports.sendMessagePostMethod = exports.sendMessageSegata = exports.sendMessageG
 const web_api_1 = require("@slack/web-api");
 require('dotenv').config();
 const web = new web_api_1.WebClient(process.env.SLACK_TOKEN);
-const conversationId = 'C0147MBL560';
+const conversationId = 'XXXXXXXXXXXX';
 const msg = [
     'セガサターーーーン、シローーーーーーーーーーーーーーーーー!!!!',
     '若者よ...\n真剣に取り組んでいるものはあるか?命がけで打ち込んでいる物があるか?\nセガサターン、シロ!\n指が折れるまで......指が折れるまで!',
@@ -23,14 +23,13 @@ exports.join = async () => {
 };
 exports.sendMessageGetMethod = async () => {
     const random = Math.floor(Math.random() * msg.length);
-    const res = await web.chat.postMessage({ text: msg[random], channel: conversationId });
-    console.log(`A message was posed to conversation ${res.channel} with id ${res.ts} which contains the message ${res.message}`);
+    await web.chat.postMessage({ text: msg[random], channel: conversationId });
+    console.log('Send Message');
 };
 exports.sendMessageSegata = async () => {
-    const res = await web.chat.postMessage({ text: 'トォオリリャア!!!', channel: conversationId });
-    console.log(`A message was posed to conversation ${res.channel} with id ${res.ts} which contains the message ${res.message}`);
+    await web.chat.postMessage({ text: 'トォオリリャア!!!', channel: conversationId });
 };
 exports.sendMessagePostMethod = async (text) => {
-    const res = await web.chat.postMessage({ text: text, channel: conversationId });
-    console.log(`A message was posed to conversation ${res.channel} with id ${res.ts} which contains the message ${res.message}`);
+    await web.chat.postMessage({ text: text, channel: conversationId });
+    console.log('Send Message');
 };
